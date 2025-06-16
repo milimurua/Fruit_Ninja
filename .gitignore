@@ -1,0 +1,67 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de compilación
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+
+# Archivos generados automáticamente por Unity
+sysinfo.txt
+
+# Archivos de log y backups
+*.log
+*.bak
+*.swp
+
+# Configuraciones personales del editor
+UserSettings/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+
+# Archivos de paquetes descargados
+Packages/manifest.json
+Packages/packages-lock.json
+
+# Archivos relacionados con la cache del renderizador
+MemoryCaptures/
+*.pidb
+*.booproj
+
+# Archivos específicos de Unity Collaborate
+.collabignore
+.collab/
+
+# Archivos específicos de Plastic SCM (si se usa)
+PlasticSCM/
+
+# Archivos de gradle/autogenerados (Android)
+.gradle
+*.apk
+*.aab
+*.keystore
+
+# Archivos de Xcode (iOS)
+*.xcworkspace
+*.xcodeproj
+*.xcuserstate
+
+# Archivos personales
+*.prefs
+*.plist
+
+# Archivos de entorno
+.env
+
