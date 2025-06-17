@@ -64,8 +64,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cfd1dcea3fbbe547981e2f62aea5017, type: 2}
-  - {fileID: 2100000, guid: d2a3f3d51e1b39b4a915a51c598a1b62, type: 2}
+  - {fileID: 2100000, guid: 0cdb97abfed0163428a508a89e6a50f6, type: 2}
+  - {fileID: 2100000, guid: 61cbf925346292b45b08d31bc7ae2530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 5299567980701679095}
   - component: {fileID: 4744153572520642931}
   m_Layer: 0
-  m_Name: watermelon 5
+  m_Name: lemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 4173299818942575155}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0, y: -0.76, z: -0}
+  m_LocalPosition: {x: -0, y: -0.733, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -236,8 +236,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cfd1dcea3fbbe547981e2f62aea5017, type: 2}
-  - {fileID: 2100000, guid: d2a3f3d51e1b39b4a915a51c598a1b62, type: 2}
+  - {fileID: 2100000, guid: 0cdb97abfed0163428a508a89e6a50f6, type: 2}
+  - {fileID: 2100000, guid: 61cbf925346292b45b08d31bc7ae2530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -404,8 +404,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cfd1dcea3fbbe547981e2f62aea5017, type: 2}
-  - {fileID: 2100000, guid: 5cfd1dcea3fbbe547981e2f62aea5017, type: 2}
+  - {fileID: 2100000, guid: 0cdb97abfed0163428a508a89e6a50f6, type: 2}
+  - {fileID: 2100000, guid: 61cbf925346292b45b08d31bc7ae2530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
