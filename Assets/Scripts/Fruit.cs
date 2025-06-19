@@ -23,7 +23,7 @@ public class Fruit : MonoBehaviour
         foreach (Rigidbody Slice in slices)
         {
             slice.velocity = fruitRigibody.velocity;
-            slice.addForceAtPosition()
+            slice.addForceAtPosition();
         }
 
     }
