@@ -3,76 +3,73 @@ using UnityEngine;
 
 public class Blade : MonoBehaviour
 {
-    private Camera mainCamera;
-    private Collider bladeCollider;
-    private TrailRenderer bladeTrail;
-    private bool slicing;
-
-    public Vector3 direction{get; private set;}
-    public float sliceForce = 5f; 
-
+    public float sliceForce = 5f;
     public float minSliceVelocity = 0.01f;
+
+    private Camera mainCamera;
+    private Collider sliceCollider;
+    private TrailRenderer sliceTrail;
+
+    public Vector3 direction { get; private set; }
+    public bool slicing { get; private set; }
 
     private void Awake()
     {
         mainCamera = Camera.main;
-        bladeCollider = GetComponent<Collider>();
-        bladeTrail = GetComponentInChildren<TrailRenderer>();
+        sliceCollider = GetComponent<Collider>();
+        sliceTrail = GetComponentInChildren<TrailRenderer>();
     }
 
     private void OnEnable()
     {
-        StopSlicing();
+        StopSlice();
     }
+
     private void OnDisable()
     {
-        StopSlicing();
+        StopSlice();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartSlicing();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            StopSlicing();
-        }
-        else if (slicing)
-        {
-            ContinueSlicing();
+        if (Input.GetMouseButtonDown(0)) {
+            StartSlice();
+        } else if (Input.GetMouseButtonUp(0)) {
+            StopSlice();
+        } else if (slicing) {
+            ContinueSlice();
         }
     }
-    private void StartSlicing()
-    {
-        Vector3 newPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        newPosition.z = 0f;
 
-        transform.position = newPosition;
+    private void StartSlice()
+    {
+        Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        position.z = 0f;
+        transform.position = position;
 
         slicing = true;
-        bladeCollider.enabled = true;
-        bladeTrail.enabled = true;
-        bladeTrail.Clear();
+        sliceCollider.enabled = true;
+        sliceTrail.enabled = true;
+        sliceTrail.Clear();
     }
 
-    private void StopSlicing()
+    private void StopSlice()
     {
         slicing = false;
-        bladeCollider.enabled = false;
-        bladeTrail.enabled = false; 
+        sliceCollider.enabled = false;
+        sliceTrail.enabled = false;
     }
 
-    private void ContinueSlicing()
+    private void ContinueSlice()
     {
         Vector3 newPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         newPosition.z = 0f;
         direction = newPosition - transform.position;
 
         float velocity = direction.magnitude / Time.deltaTime;
-        bladeCollider.enabled = velocity > minSliceVelocity;
+        sliceCollider.enabled = velocity > minSliceVelocity;
 
         transform.position = newPosition;
     }
+
 }

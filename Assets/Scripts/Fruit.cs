@@ -3,32 +3,45 @@ using UnityEngine;
 public class Fruit : MonoBehaviour
 {
     public GameObject whole;
+
     public GameObject sliced;
 
-    private Rigidbody fruitRigibody;
+    private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
+    private ParticleSystem juiceParticleEffect;
+
+    public int points = 1;
+
+    private void Awake()
+    {
+        fruitRigidbody = GetComponent<Rigidbody>();
+        fruitCollider = GetComponent<Collider>();
+        juiceParticleEffect = GetComponentInChildren<ParticleSystem>();
+        
+        
+    }
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
-        whole.SetActive(false);
-        sliced.SetActive(true);
+        GameManager.Instance.IncreaseScore(points);
 
         fruitCollider.enabled = false;
+        whole.SetActive(false);
+
+        sliced.SetActive(true);
+        juiceParticleEffect.Play();
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         sliced.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        Rigidbody[] slice = sliced.GetComponentsInChildren<Rigidbody>();
+        Rigidbody[] slices = sliced.GetComponentsInChildren<Rigidbody>();
 
-        foreach (Rigidbody Slice in slices)
+        foreach (Rigidbody slice in slices)
         {
-            slice.velocity = fruitRigibody.velocity;
-            slice.addForceAtPosition();
+            slice.linearVelocity = fruitRigidbody.linearVelocity;
+            slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
         }
-
     }
-    
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,4 +51,5 @@ public class Fruit : MonoBehaviour
             Slice(blade.direction, blade.transform.position, blade.sliceForce);
         }
     }
+
 }
