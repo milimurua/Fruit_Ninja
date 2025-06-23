@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private Text finalText;
 
+    [Header("paneles de inicio")]
+    public GameObject startPanel; // Panel de inicio
+    public Button startButton; //boton de inicio
+    public Text panelInicioMensaje; // para UI normal
+
     public int score { get; private set; } = 0;
 
     private void Awake()
@@ -33,13 +38,24 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        NewGame();
+        Time.timeScale = 0f; // Pausa el juego al arrancar
+        startPanel.SetActive(true); // Muestra el panel de inicio
+        finalText.gameObject.SetActive(false);
+
+        if (startButton != null)
+            startButton.onClick.AddListener(StartGame);
+    }
+
+    public void StartGame()
+    {
+        startPanel.SetActive(false); //Oculta el panel de inicio
+        NewGame(); //Reinicia el juego (activa objetos, etc)
+        Time.timeScale = 1f; // Reanuda el tiempo
     }
 
     private void NewGame()
     {
-        Time.timeScale = 1f;
-
+        
         ClearScene();
 
         blade.enabled = true;
@@ -104,27 +120,23 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        
+        Time.timeScale = 0f;
+        finalText.text = "GAME OVER";
+        finalText.gameObject.SetActive(true);
 
-        Time.timeScale = 0f; 
-        finalText.gameObject.SetActive(true); 
-        yield return new WaitForSecondsRealtime(1f); 
-        finalText.gameObject.SetActive(false);
-
-        NewGame();
-
-        elapsed = 0f;
-        duration = 0.5f;
-
-        while (elapsed < duration)
+        //esperar 2 segundos antes de empezar
+        float waitTime = 2f;
+        float timer = 0f;
+        while (timer < waitTime)
         {
-            float t = Mathf.Clamp01(elapsed / duration);
-            fadeImage.color = Color.Lerp(Color.white, Color.clear, t);
-
-            elapsed += Time.unscaledDeltaTime;
-
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
+    
+        finalText.gameObject.SetActive(false);
+        fadeImage.color = Color.clear;
+        startPanel.SetActive(true);  // Permite reiniciar
+
     }
 
 }
