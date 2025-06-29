@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("paneles de inicio")]
     public GameObject startPanel; // Panel de inicio
     public Button startButton; //boton de inicio
+
     public Text panelInicioMensaje; // para UI normal
 
     public int score { get; private set; } = 0;
@@ -42,6 +43,11 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(true); // Muestra el panel de inicio
         finalText.gameObject.SetActive(false);
 
+        if (blade != null) // Añadir una comprobación de null por seguridad
+        {
+            blade.enabled = false;
+        }
+
         if (startButton != null)
             startButton.onClick.AddListener(StartGame);
     }
@@ -55,11 +61,15 @@ public class GameManager : MonoBehaviour
 
     private void NewGame()
     {
-        
         ClearScene();
 
-        blade.enabled = true;
-        spawner.enabled = true;
+        // Habilita el Blade solo cuando el juego realmente comienza
+        if (blade != null) // Añadir una comprobación de null por seguridad
+        {
+            blade.enabled = true;
+        }
+        
+        spawner.enabled = true; // El spawner también debe controlarse
 
         score = 0;
         scoreText.text = score.ToString();
@@ -98,7 +108,11 @@ public class GameManager : MonoBehaviour
 
     public void Explode()
     {
-        blade.enabled = false;
+        // Deshabilita el Blade cuando explota una bomba o termina el juego
+        if (blade != null)
+        {
+            blade.enabled = false;
+        }
         spawner.enabled = false;
 
         StartCoroutine(ExplodeSequence());

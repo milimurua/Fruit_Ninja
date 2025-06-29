@@ -32,17 +32,25 @@ public class Blade : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Time.timeScale == 0f) return;
+        
+        if (Input.GetMouseButtonDown(0))
+        {
             StartSlice();
-        } else if (Input.GetMouseButtonUp(0)) {
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
             StopSlice();
-        } else if (slicing) {
+        }
+        else if (slicing)
+        {
             ContinueSlice();
         }
     }
 
     private void StartSlice()
     {
+        Debug.Log("Slice started");
         Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         position.z = 0f;
         transform.position = position;
@@ -55,6 +63,7 @@ public class Blade : MonoBehaviour
 
     private void StopSlice()
     {
+        Debug.Log("Slice stopped");
         slicing = false;
         sliceCollider.enabled = false;
         sliceTrail.enabled = false;
