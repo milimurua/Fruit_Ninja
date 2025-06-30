@@ -184,9 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c253975351875f443861d4e7562632d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitType: Kiwi
   whole: {fileID: 8550875085425326834}
   sliced: {fileID: 7543988792731736886}
-  points: 1
+  points: 2
 --- !u!1 &4173299818942575155
 GameObject:
   m_ObjectHideFlags: 0

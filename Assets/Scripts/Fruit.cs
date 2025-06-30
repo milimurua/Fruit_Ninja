@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
+    [Header("Identidad de la fruta")]
+    public string fruitType;
+
     public GameObject whole;
 
     public GameObject sliced;
@@ -17,13 +20,14 @@ public class Fruit : MonoBehaviour
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitCollider = GetComponent<Collider>();
         juiceParticleEffect = GetComponentInChildren<ParticleSystem>();
-        
-        
     }
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
         GameManager.Instance.IncreaseScore(points);
+
+        if (FruitCounter.Instance != null)
+            FruitCounter.Instance.RegisterSlice(fruitType);
 
         fruitCollider.enabled = false;
         whole.SetActive(false);
